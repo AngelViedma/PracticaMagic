@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "751007080735",
+    "project_id": "practica-magic",
+    "storage_bucket": "practica-magic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751007080735:android:ae035bc23d9e49c529902a",
+        "android_client_info": {
+          "package_name": "com.example.practicamagic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnmEoe6RyKC4wwPDhqYJH_xz4AToa1Aks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
