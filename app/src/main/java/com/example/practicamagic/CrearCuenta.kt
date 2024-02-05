@@ -54,6 +54,7 @@ class CrearCuenta : AppCompatActivity() {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                            Log.e("ERRORXD","${task.exception?.message}")
                             Toast.makeText(
                                 baseContext,
                                 "Authentication failed.",
@@ -77,17 +78,17 @@ class CrearCuenta : AppCompatActivity() {
         val contrasenaRepetir=textInputEditTextRepetirContrasena.text.toString().trim()
 
         if(correo.isNullOrEmpty()){
-            textInputLayoutContrasena.error="El correo no puede estar vacio"
+            textInputLayoutCorreo.error="El correo no puede estar vacio"
             validado=false
         }else{
             textInputLayoutCorreo.error=null
         }
 
         if(!contrasena.equals(contrasenaRepetir)){
-            textInputLayoutContrasena.error="La contraseñas no coinciden"
+            textInputLayoutRepetirContrasena.error="Las contraseñas no coinciden"
             validado=false
         }else{
-            textInputLayoutContrasena.error=null
+            textInputLayoutRepetirContrasena.error=null
         }
 
         if(contrasena.isNullOrEmpty()){
