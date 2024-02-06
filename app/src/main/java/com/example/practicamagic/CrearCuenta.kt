@@ -1,6 +1,7 @@
 package com.example.practicamagic
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -50,6 +51,9 @@ class CrearCuenta : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success")
                             val user = auth.currentUser
+                            Toast.makeText(this,"Usuario creado correctamente",Toast.LENGTH_SHORT).show()
+                            val intent_ir_login= Intent(this,Login::class.java)
+                            startActivity(intent_ir_login)
                             //updateUI(user)
                         } else {
                             // If sign in fails, display a message to the user.
@@ -57,7 +61,7 @@ class CrearCuenta : AppCompatActivity() {
                             Log.e("ERRORXD","${task.exception?.message}")
                             Toast.makeText(
                                 baseContext,
-                                "Authentication failed.",
+                                "Ese correo ya existe",
                                 Toast.LENGTH_SHORT,
                             ).show()
                             //updateUI(null)
