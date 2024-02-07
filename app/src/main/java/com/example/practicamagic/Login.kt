@@ -1,13 +1,11 @@
 package com.example.practicamagic
 
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.provider.Settings.Global.putInt
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
@@ -27,6 +25,7 @@ class Login : AppCompatActivity() {
     private lateinit var textInputEditTextCorreo: TextInputEditText
     private lateinit var textInputLayoutCorreo: TextInputLayout
     private lateinit var sharedPreferencesPasswords:SharedPreferences
+    var esAdmin:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,11 +59,15 @@ class Login : AppCompatActivity() {
                             Log.d(TAG, "signInWithEmail:success")
                             val user = auth.currentUser
                             if(checkAdmin(correo,contrasena)){
+                                esAdmin=true
                                 Toast.makeText(this,"Eres Admin",Toast.LENGTH_SHORT).show()
-                                val intent_main=Intent(this,MainActivity::class.java)
-                                startActivity(intent_main)
+                                val intent_AdminHome=Intent(this,AdminHome::class.java)
+                                startActivity(intent_AdminHome)
                             }else{
+                                esAdmin=false
+                                val intent_ClienteHome=Intent(this,ClienteHome::class.java)
                                 Toast.makeText(this,"Eres cliente",Toast.LENGTH_SHORT).show()
+                                startActivity(intent_ClienteHome)
                             }
 
 
