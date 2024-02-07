@@ -63,7 +63,8 @@
                 android:id="@+id/textInputEditTextCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Correo Electronico">
+                android:hint="Correo Electronico"
+                android:inputType="textEmailAddress">
 
             </com.google.android.material.textfield.TextInputEditText>
 
