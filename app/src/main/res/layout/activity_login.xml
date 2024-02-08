@@ -64,7 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Correo Electronico"
-                android:inputType="textEmailAddress">
+                android:inputType="textEmailAddress"
+                android:text="admin1234@gmail.com"
+                >
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -83,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Contraseña"
+                android:text="admin1234"
                 android:inputType="textPassword">
 
             </com.google.android.material.textfield.TextInputEditText>

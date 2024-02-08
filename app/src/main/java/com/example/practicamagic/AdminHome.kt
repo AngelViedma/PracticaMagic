@@ -1,7 +1,9 @@
 package com.example.practicamagic
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -38,9 +40,14 @@ class AdminHome : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==android.R.id.home){
-            onBackPressedDispatcher.onBackPressed()
-        }
+        onBackPressedDispatcher.onBackPressed()
+        val intent_sobreMi= Intent(this,SobreMi::class.java)
+        startActivity(intent_sobreMi)
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_ajustes, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

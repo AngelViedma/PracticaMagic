@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PracticaMagic"
         tools:targetApi="31">
         <activity
+            android:name=".SobreMi"
+            android:exported="false" />
+        <activity
             android:name=".ClienteHome"
             android:exported="false" />
         <activity
@@ -21,11 +24,11 @@
         <activity
             android:name=".CrearCuenta"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".Login"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
