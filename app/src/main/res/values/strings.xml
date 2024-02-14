@@ -26,4 +26,7 @@
     <string name="open">Menu</string>
     <string name="sobre_mi">Sobre mi</string>
     <string name="volver">Volver</string>
+    <string name="eventos">Eventos</string>
+    <string name="Cartas">Cartas</string>
+    <string name="ventas">Ventas</string>
 </resources>

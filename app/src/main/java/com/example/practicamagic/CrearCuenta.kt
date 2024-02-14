@@ -11,6 +11,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class CrearCuenta : AppCompatActivity() {
@@ -25,9 +27,13 @@ class CrearCuenta : AppCompatActivity() {
     private lateinit var textInputEditTextCorreo:TextInputEditText
     private lateinit var textInputLayoutCorreo:TextInputLayout
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_cuenta)
+
+
         bt_crear_usuario=findViewById(R.id.bt_registrar_datos_usuario)
 
         textInputEditTextCorreo=findViewById(R.id.textInputEditTextCorreo)
