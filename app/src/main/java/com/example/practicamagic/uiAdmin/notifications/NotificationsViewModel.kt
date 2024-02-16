@@ -1,14 +1,13 @@
-package com.example.practicamagic.ui.ajustes
+package com.example.practicamagic.uiAdmin.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class AjustesAdminViewModel : ViewModel() {
+class NotificationsViewModel : ViewModel() {
+
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Admin Fragment"
+        value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
-
-
 }

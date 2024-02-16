@@ -1,18 +1,13 @@
-package com.example.practicamagic.ui.ajustes
+package com.example.practicamagic.uiAdmin.ajustes
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.practicamagic.R
 import com.example.practicamagic.databinding.FragmentAjustesAdminBinding
-import com.example.practicamagic.databinding.FragmentDashboardBinding
-import com.example.practicamagic.ui.dashboard.DashboardViewModel
 
 
 class AjustesAdminFragment : Fragment() {

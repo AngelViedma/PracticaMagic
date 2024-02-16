@@ -1,4 +1,4 @@
-package com.example.practicamagic.ui.dashboard
+package com.example.practicamagic.uiAdmin.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

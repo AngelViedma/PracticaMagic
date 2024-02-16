@@ -1,4 +1,4 @@
-package com.example.practicamagic.ui.dashboard
+package com.example.practicamagic.uiAdmin.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
