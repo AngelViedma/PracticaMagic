@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutNombre_carta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/color6"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_nombre_carta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la carta"
+            android:inputType="text">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutCategoria_carta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/color6"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutNombre_carta"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_categoria_carta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Categoría de la carta"
+            android:inputType="text">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPrecio_carta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/color6"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutCategoria_carta"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_precio_carta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Precio de la carta"
+            android:inputType="numberDecimal">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutStock_carta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/color6"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutPrecio_carta"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_Stock_carta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la carta"
+            android:inputType="text">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

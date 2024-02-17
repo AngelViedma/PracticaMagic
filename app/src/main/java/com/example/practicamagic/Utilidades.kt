@@ -1,6 +1,7 @@
 package com.example.practicamagic
 
 import android.content.Context
+import android.net.Uri
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.practicamagic.clientes.Usuario
@@ -10,6 +11,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.tasks.await
 
 class Utilidades {
     companion object {
@@ -59,6 +62,15 @@ class Utilidades {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }
+
+        suspend fun guardarImagen(sto_ref: StorageReference, id: String, imagen: Uri): String {
+            lateinit var url_carta_firebase: Uri
+
+            url_carta_firebase = sto_ref.child("tienda").child("cartas").child(id)
+                .putFile(imagen).await().storage.downloadUrl.await()
+
+            return url_carta_firebase.toString()
         }
 
     }

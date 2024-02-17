@@ -12,36 +12,31 @@ import com.example.practicamagic.databinding.FragmentAjustesAdminBinding
 
 class AjustesAdminFragment : Fragment() {
 
-    private var _binding: FragmentAjustesAdminBinding? = null
-    private val binding get() = _binding!!
-
-    companion object {
-        fun newInstance() = AjustesAdminFragment()
-    }
-
-    private lateinit var viewModel: AjustesAdminViewModel
+    //variables lateinit de vista y viewmodel
+    lateinit var binding: FragmentAjustesAdminBinding
+    lateinit var viewModel: AjustesAdminViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val ajustesAdminViewModel =
-            ViewModelProvider(this).get(AjustesAdminViewModel::class.java)
+        //inicializacion de vista y viewmodel
+        binding = FragmentAjustesAdminBinding.inflate(inflater, container, false)
+        viewModel =
+            ViewModelProvider(this)[AjustesAdminViewModel::class.java]
 
-        _binding = FragmentAjustesAdminBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        initObservers()
 
-        val textView: TextView = binding.textAdmin
-        ajustesAdminViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        return binding.root
+    }
+
+    private fun initObservers() {
+        viewModel.text.observe(viewLifecycleOwner) {
         }
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    companion object {
+        fun newInstance() = AjustesAdminFragment()
     }
-
 
 }

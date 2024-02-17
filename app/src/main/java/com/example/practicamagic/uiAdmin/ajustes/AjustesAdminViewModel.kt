@@ -5,10 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AjustesAdminViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is Admin Fragment"
-    }
+    private val _text = MutableLiveData("ajustes admin fragment")
     val text: LiveData<String> = _text
-
-
 }

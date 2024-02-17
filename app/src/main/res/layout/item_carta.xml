@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_carta"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginVertical="8dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_dashboard_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_nombre_carta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_cat"
+            app:layout_constraintStart_toEndOf="@+id/img_carta"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            tools:text="Nombre de carta" />
+
+        <TextView
+            android:id="@+id/tv_categoria_carta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_cat"
+            app:layout_constraintStart_toEndOf="@+id/tv_cat"
+            app:layout_constraintTop_toTopOf="@+id/tv_cat"
+            tools:text="Azul" />
+
+        <TextView
+            android:id="@+id/tv_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Categoria: "
+            app:layout_constraintBottom_toTopOf="@+id/tv_disponible"
+            app:layout_constraintStart_toEndOf="@+id/img_carta"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nombre_carta"
+            tools:text="Categoria: " />
+
+        <TextView
+            android:id="@+id/tv_disponible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Stock: "
+            app:layout_constraintBottom_toTopOf="@+id/tv_pre"
+            app:layout_constraintStart_toEndOf="@+id/img_carta"
+            app:layout_constraintTop_toBottomOf="@+id/tv_cat"
+            tools:text="Stock: " />
+
+        <TextView
+            android:id="@+id/tv_precio_carta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pre"
+            app:layout_constraintStart_toEndOf="@+id/tv_pre"
+            app:layout_constraintTop_toTopOf="@+id/tv_pre"
+            tools:text="20€" />
+
+        <TextView
+            android:id="@+id/tv_stock_carta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_disponible"
+            app:layout_constraintStart_toEndOf="@+id/tv_disponible"
+            app:layout_constraintTop_toTopOf="@+id/tv_disponible"
+            tools:text="Disponible" />
+
+        <TextView
+            android:id="@+id/tv_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Precio: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_precio_carta"
+            app:layout_constraintStart_toEndOf="@+id/img_carta"
+            app:layout_constraintTop_toBottomOf="@+id/tv_disponible"
+            tools:text="Precio: " />
+
+        <ImageButton
+            android:id="@+id/bt_borrar_carta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/img_borrar_carta" />
+
+        <ImageButton
+            android:id="@+id/bt_modificar_carta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="28dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/img_editar_carta" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
