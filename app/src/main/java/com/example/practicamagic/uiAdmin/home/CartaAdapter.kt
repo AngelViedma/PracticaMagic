@@ -2,6 +2,7 @@ package com.example.practicamagic.uiAdmin.home
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -20,11 +21,11 @@ class CartaAdapter(
     private val sto_ref: StorageReference
 ) : RecyclerView.Adapter<CartaAdapter.ViewHolder>() {
 
-    private var cartas: List<Carta> = listOf()
+    private var cartas: MutableList<Carta> = mutableListOf()
 
     class ViewHolder(val binding: ItemCartaBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(carta: Carta, context: Context, db_ref: DatabaseReference, sto_ref: StorageReference) {
+        fun bind(carta: Carta, context: Context) {
             Glide.with(context)
                 .load(carta.imagen)
                 .into(binding.imgCarta)
@@ -32,10 +33,7 @@ class CartaAdapter(
             binding.tvNombreCarta.text = carta.nombre
             binding.tvCategoriaCarta.text = carta.categoria
             binding.tvPrecioCarta.text = carta.precio.toString()
-            binding.tvStockCarta.text=return when(carta.stock){
-                false -> binding.tvStockCarta.text = "Agotado"
-                else -> binding.tvStockCarta.text = "Disponible"
-            }
+            binding.tvStockCarta.text = if (carta.stock=="1" || carta.stock=="Disponible") "Disponible" else "Agotado"
         }
 
         companion object {
@@ -50,9 +48,9 @@ class CartaAdapter(
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun submitList(items: List<Carta>){
-        cartas = items
+    fun submitList(items: List<Carta>) {
+        cartas.clear()
+        cartas.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -61,35 +59,40 @@ class CartaAdapter(
     override fun getItemCount() = cartas.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cartas[position], context, db_ref, sto_ref)
-        holder.binding.btBorrarCarta.setOnClickListener {
-            var success1=false
-            var success2=false
-            db_ref.child("tienda").child("cartas").child(cartas[position].id.toString()).removeValue().addOnSuccessListener {
-                success1=true
+        holder.bind(cartas[position], context)
 
-            }
-            sto_ref.child("tienda").child("cartas").child(cartas[position].id.toString()).delete().addOnSuccessListener {
-                success2=true
-            }
-            if(success1 && success2){
-                Toast.makeText(context, "Carta borrada con exito", Toast.LENGTH_SHORT).show()
-                submitList(cartas)
-            }
+        holder.binding.btBorrarCarta.setOnClickListener {
+            val carta = cartas[position]
+            db_ref.child("tienda").child("cartas").child(carta.id.toString()).removeValue()
+                .addOnSuccessListener {
+                    sto_ref.child("tienda").child("cartas").child(carta.id.toString()).delete()
+                        .addOnSuccessListener {
+                            cartas.removeAt(position)
+                            notifyItemRemoved(position)
+                            Toast.makeText(context, "Carta eliminada", Toast.LENGTH_SHORT).show()
+                        }
+                }
         }
+
         holder.binding.btModificarCarta.setOnClickListener {
-            showCartaDetailsDialog(cartas[position]).show()
-            submitList(cartas)
+            showCartaDetailsDialog(cartas[position])
         }
     }
 
-    fun showCartaDetailsDialog(carta: Carta): AlertDialog {
+    private fun showCartaDetailsDialog(carta: Carta) {
         val dialogBinding = DialogCartaBinding.inflate(LayoutInflater.from(context))
 
         dialogBinding.editNombreCarta.setText(carta.nombre)
         dialogBinding.editCategoriaCarta.setText(carta.categoria)
         dialogBinding.editPrecioCarta.setText(carta.precio.toString())
-        dialogBinding.editStockCarta.setText(carta.stock.toString())
+        dialogBinding.editStockCarta.setText(when (carta.stock.toString()){
+            "Disponible" -> "Disponible"
+            "Agotado" -> "Agotado"
+            "0" -> "Agotado"
+            "1" -> "Disponible"
+            else -> "Agotado"
+
+        })
 
         val builder = AlertDialog.Builder(context)
         builder.setView(dialogBinding.root)
@@ -97,15 +100,28 @@ class CartaAdapter(
                 val nombre = dialogBinding.editNombreCarta.text.toString()
                 val categoria = dialogBinding.editCategoriaCarta.text.toString()
                 val precio = dialogBinding.editPrecioCarta.text.toString().toDouble()
-                val stock = dialogBinding.editStockCarta.text.toString().toBoolean()
+                val stock = when (dialogBinding.editStockCarta.text.toString()){
+                    "Disponible" -> "Disponible"
+                    "Agotado" -> "Agotado"
+                    "0" -> "Agotado"
+                    "1" -> "Disponible"
+                    else -> "Agotado"
 
-                val carta = Carta(carta.id, nombre, categoria, precio, stock, carta.imagen)
-                db_ref.child("tienda").child("cartas").child(carta.id.toString()).setValue(carta)
+                }
+
+                val updatedCarta = Carta(carta.id, nombre, categoria, precio, stock, carta.imagen)
+                db_ref.child("tienda").child("cartas").child(carta.id.toString()).setValue(updatedCarta)
+                    .addOnSuccessListener {
+                        val index = cartas.indexOf(carta)
+                        if (index != -1) {
+                            cartas[index] = updatedCarta
+                            notifyItemChanged(index)
+                        }
+                    }
             }.setNegativeButton("Cancelar") { dialog, which ->
                 dialog.dismiss()
             }
 
-        val dialog = builder.create()
-        return dialog
+        builder.create().show()
     }
 }

@@ -97,25 +97,14 @@
             tools:text="Precio: " />
 
         <ImageButton
-            android:id="@+id/bt_borrar_carta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/img_borrar_carta" />
-
-        <ImageButton
-            android:id="@+id/bt_modificar_carta"
+            android:id="@+id/bt_comprar_carta_cliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="28dp"
             android:background="@android:color/transparent"
+            android:src="@drawable/img_comprar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/img_editar_carta" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

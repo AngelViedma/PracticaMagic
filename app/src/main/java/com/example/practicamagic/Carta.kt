@@ -10,6 +10,6 @@ data class Carta(
     var nombre : String? = null,
     var categoria: String? = null,
     var precio: Double? = null,
-    var stock: Boolean? = null,
+    var stock: String? = null,
     var imagen: String? = null,
 ): Parcelable

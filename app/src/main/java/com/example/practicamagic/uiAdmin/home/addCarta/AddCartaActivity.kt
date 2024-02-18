@@ -73,11 +73,13 @@ class AddCartaActivity : AppCompatActivity() {
             binding.imageCarta.setImageURI(imagenUri)
         }
     }
-    fun stockFinal(stock:String):Boolean{
+    fun stockFinal(stock:String):String{
         return when(stock){
-            "0"->false
-            "1"->true
-            else->false
+            "0"->"Agotado"
+            "1"->"Disponible"
+            "Disponible"->"Disponible"
+            "Agotado"->"Agotado"
+            else->"Agotado"
         }
     }
 }
