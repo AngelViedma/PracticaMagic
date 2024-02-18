@@ -74,10 +74,12 @@ class CartaAdapter(
             }
             if(success1 && success2){
                 Toast.makeText(context, "Carta borrada con exito", Toast.LENGTH_SHORT).show()
+                submitList(cartas)
             }
         }
         holder.binding.btModificarCarta.setOnClickListener {
             showCartaDetailsDialog(cartas[position]).show()
+            submitList(cartas)
         }
     }
 

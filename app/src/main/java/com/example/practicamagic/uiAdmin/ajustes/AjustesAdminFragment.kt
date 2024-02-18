@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.practicamagic.databinding.FragmentAjustesAdminBinding
-
-
 class AjustesAdminFragment : Fragment() {
 
     //variables lateinit de vista y viewmodel
