@@ -91,7 +91,6 @@ class CartaAdapter(
             "0" -> "Agotado"
             "1" -> "Disponible"
             else -> "Agotado"
-
         })
 
         val builder = AlertDialog.Builder(context)

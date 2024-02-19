@@ -30,6 +30,10 @@ class CartaAdapterCliente(
             binding.tvCategoriaCarta.text = carta.categoria
             binding.tvPrecioCarta.text = carta.precio.toString()
             binding.tvStockCarta.text = if (carta.stock=="1" || carta.stock=="Disponible") "Disponible" else "Agotado"
+
+            binding.btComprarCartaCliente.setOnClickListener {
+
+            }
         }
 
         companion object {

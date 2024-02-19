@@ -55,7 +55,7 @@ class EventosPersona : AppCompatActivity() {
                                             pojo_evento = snapshot!!.getValue(Evento::class.java)!!
                                             //RELLENAR LOS DATOS PARA EL ADAPTADOR
                                             //PARA PODER BORRAR LA INSCRIPCION
-                                            pojo_evento.id_inscripcion=pojo_inscripcion.id
+                                            //pojo_evento.id_inscripcion=pojo_inscripcion.id
                                             lista.add(pojo_evento)
                                             semaforo.countDown()
                                         }
