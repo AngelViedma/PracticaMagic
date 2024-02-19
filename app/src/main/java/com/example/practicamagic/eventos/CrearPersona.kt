@@ -29,7 +29,7 @@ class CrearPersona : AppCompatActivity() {
         crear_persona=findViewById(R.id.nueva_persona)
 
         crear_persona.setOnClickListener {
-            val id_generado=db_ref.child("aplicacion")
+            val id_generado=db_ref.child("tienda")
                 .child("personas")
                 .push().key
 
@@ -37,7 +37,7 @@ class CrearPersona : AppCompatActivity() {
                 nombre_persona.text.toString(),
                 dni_persona.text.toString())
 
-            db_ref.child("aplicacion")
+            db_ref.child("tienda")
                 .child("personas")
                 .child(id_generado!!)
                 .setValue(nuevo_evento)

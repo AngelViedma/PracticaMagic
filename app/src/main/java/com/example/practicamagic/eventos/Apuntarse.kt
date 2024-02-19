@@ -39,8 +39,8 @@ class Apuntarse : AppCompatActivity() {
             android.R.layout.simple_spinner_dropdown_item,lista_persona_spinner)
         persona_spinner.adapter=adaptador_persona_spinner
 
-        db_ref.child("aplicacion")
-            .child("personas")
+        db_ref.child("tienda")
+            .child("reservas_eventos")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     lista_persona_spinner.clear()
@@ -65,7 +65,7 @@ class Apuntarse : AppCompatActivity() {
             android.R.layout.simple_spinner_dropdown_item,lista_eventos_spinner)
         evento_spinner.adapter=adaptador_eventos_spinner
 
-        db_ref.child("aplicacion")
+        db_ref.child("tienda")
             .child("eventos")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -82,7 +82,7 @@ class Apuntarse : AppCompatActivity() {
                 }
             })
         lista_inscripciones= mutableListOf<Inscripcion>()
-        db_ref.child("aplicacion")
+        db_ref.child("tienda")
             .child("inscripciones")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -108,7 +108,7 @@ class Apuntarse : AppCompatActivity() {
                 Toast.makeText(applicationContext, "No puedes inscribir mas de una vez a la misma persona", Toast.LENGTH_SHORT).show()
             }else {
 
-                val id_generado = db_ref.child("aplicacion").child("inscripciones").push().key
+                val id_generado = db_ref.child("tienda").child("inscripciones").push().key
 
                 val nueva_inscripcion = Inscripcion(
                     id_generado,
@@ -116,7 +116,7 @@ class Apuntarse : AppCompatActivity() {
                     id_persona
                 )
 
-                db_ref.child("aplicacion")
+                db_ref.child("tienda")
                     .child("inscripciones")
                     .child(id_generado!!)
                     .setValue(nueva_inscripcion)

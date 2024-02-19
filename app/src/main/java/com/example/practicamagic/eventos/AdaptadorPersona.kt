@@ -26,7 +26,6 @@ class AdaptadorPersona(private val lista_personas:List<Persona>) : RecyclerView.
         val item_actual=lista_personas[position]
 
         holder.nombre.text=item_actual.nombre
-        holder.dni.text=item_actual.dni
 
         holder.ver_eventos.setOnClickListener{
             val intent= Intent(contexto,EventosPersona::class.java)
@@ -39,7 +38,6 @@ class AdaptadorPersona(private val lista_personas:List<Persona>) : RecyclerView.
 
     inner class PersonaViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val nombre: TextView = itemView.findViewById(R.id.item_nombre_persona)
-        val dni: TextView = itemView.findViewById(R.id.item_persona_dni)
         val ver_eventos: ImageView = itemView.findViewById(R.id.item_ver_eventos)
     }
 }

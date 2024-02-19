@@ -30,7 +30,7 @@ class VerEventos : AppCompatActivity() {
 
         lista= mutableListOf<Evento>()
 
-        db_ref.child("aplicacion")
+        db_ref.child("tienda")
             .child("eventos")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

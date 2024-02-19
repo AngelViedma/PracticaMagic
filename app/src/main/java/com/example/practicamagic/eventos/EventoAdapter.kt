@@ -29,18 +29,6 @@ class EventoAdapter(private val lista_eventos:List<Evento>) : RecyclerView.Adapt
         holder.fecha.text=item_actual.precio
         holder.desapuntarse.visibility= View.INVISIBLE
 
-        if(item_actual.id_inscripcion=="") {
-            holder.desapuntarse.visibility = View.INVISIBLE
-            holder.ver_personas.visibility = View.VISIBLE
-        }else{
-            holder.desapuntarse.visibility = View.VISIBLE
-            holder.ver_personas.visibility = View.INVISIBLE
-        }
-        holder.desapuntarse.setOnClickListener {
-            val db_ref= FirebaseDatabase.getInstance().getReference()
-            db_ref.child("aplicacion").child("inscripciones").child(item_actual.id_inscripcion!!).removeValue()
-        }
-
         holder.ver_personas.setOnClickListener {
             val intent= Intent(contexto,PersonasEvento::class.java)
             intent.putExtra("evento",item_actual)

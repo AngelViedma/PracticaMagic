@@ -33,7 +33,7 @@ class PersonasEvento : AppCompatActivity() {
 
         lista= mutableListOf<Persona>()
 
-        db_ref.child("aplicacion")
+        db_ref.child("tienda")
             .child("inscripciones")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -46,7 +46,7 @@ class PersonasEvento : AppCompatActivity() {
                                 //USAMOS EL SEMAFORO PARA SINCRONIZAR: LINEALIZAMOS EL CODIGO
                                 var semaforo = CountDownLatch(1)
 
-                                db_ref.child("aplicacion")
+                                db_ref.child("tienda")
                                     .child("personas")
                                     .child(pojo_inscripcion!!.id_persona!!)
                                     .addListenerForSingleValueEvent(object : ValueEventListener {

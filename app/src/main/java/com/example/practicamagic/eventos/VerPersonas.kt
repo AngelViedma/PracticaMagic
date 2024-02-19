@@ -28,7 +28,7 @@ class VerPersonas : AppCompatActivity() {
 
         lista= mutableListOf<Persona>()
 
-        db_ref.child("aplicacion")
+        db_ref.child("tienda")
             .child("personas")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

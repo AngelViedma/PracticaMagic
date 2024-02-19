@@ -32,7 +32,7 @@ class CrearEvento : AppCompatActivity() {
 
         crear_evento.setOnClickListener {
 
-            val id_generado=db_ref.child("aplicacion")
+            val id_generado=db_ref.child("tienda")
                 .child("eventos")
                 .push().key
 
@@ -40,7 +40,7 @@ class CrearEvento : AppCompatActivity() {
                 nombre_evento.text.toString(),
                 fecha_evento.text.toString())
 
-            db_ref.child("aplicacion")
+            db_ref.child("tienda")
                 .child("eventos")
                 .child(id_generado!!)
                 .setValue(nuevo_evento)
