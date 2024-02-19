@@ -9,18 +9,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.practicamagic.Carta
-import com.example.practicamagic.databinding.FragmentHomeBinding
+import com.example.practicamagic.databinding.FragmentHomeAdminBinding
 import com.example.practicamagic.uiAdmin.home.addCarta.AddCartaActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class HomeFragment : Fragment() {
+class HomeAdminFragment : Fragment() {
 
     //variables lateinit de vista y viewmodel
-    lateinit var binding: FragmentHomeBinding
-    lateinit var viewModel: HomeViewModel
+    lateinit var binding: FragmentHomeAdminBinding
+    lateinit var viewModel: HomeAdminViewModel
     lateinit var adapter: CartaAdapter
     lateinit var db_ref: DatabaseReference
     lateinit var sto_ref: StorageReference
@@ -39,9 +39,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //inicializacion de vista y viewmodel
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
         viewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
+            ViewModelProvider(this)[HomeAdminViewModel::class.java]
 
         initDatabase()
         initObservers()
@@ -88,6 +88,6 @@ class HomeFragment : Fragment() {
         }
     }
     companion object {
-        fun newInstance() = HomeFragment()
+        fun newInstance() = HomeAdminFragment()
     }
 }

@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.practicamagic.Carta
-import com.example.practicamagic.R
 import com.example.practicamagic.databinding.FragmentHomeClienteBinding
-import com.example.practicamagic.uiAdmin.home.CartaAdapter
-import com.example.practicamagic.uiAdmin.home.HomeFragment
+import com.example.practicamagic.uiAdmin.home.HomeAdminFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -76,6 +74,6 @@ class HomeClienteFragment : Fragment() {
         }
     }
     companion object {
-        fun newInstance() = HomeFragment()
+        fun newInstance() = HomeAdminFragment()
     }
 }

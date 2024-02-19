@@ -29,4 +29,9 @@
     <string name="eventos">Eventos</string>
     <string name="Cartas">Cartas</string>
     <string name="ventas">Ventas</string>
+    <string name="title_tienda">Tienda</string>
+    <string name="title_eventos">Eventos</string>
+    <string name="title_pedidos">Pedidos</string>
+    <string name="ajustes_ajustes">Ajustes</string>
+    <string name="ajustes_ventas">Ventas</string>
 </resources>

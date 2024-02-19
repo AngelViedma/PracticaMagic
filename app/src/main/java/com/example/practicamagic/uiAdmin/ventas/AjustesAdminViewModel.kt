@@ -1,4 +1,4 @@
-package com.example.practicamagic.uiAdmin.ajustes
+package com.example.practicamagic.uiAdmin.ventas
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

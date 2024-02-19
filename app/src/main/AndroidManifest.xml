@@ -13,6 +13,27 @@
         android:theme="@style/Theme.PracticaMagic"
         tools:targetApi="31">
         <activity
+            android:name=".eventos.PersonasEvento"
+            android:exported="false" />
+        <activity
+            android:name=".eventos.EventosPersona"
+            android:exported="false" />
+        <activity
+            android:name=".eventos.CrearPersona"
+            android:exported="false" />
+        <activity
+            android:name=".eventos.VerEventos"
+            android:exported="false" />
+        <activity
+            android:name=".eventos.VerPersonas"
+            android:exported="false" />
+        <activity
+            android:name=".eventos.Apuntarse"
+            android:exported="false" />
+        <activity
+            android:name=".eventos.CrearEvento"
+            android:exported="false" />
+        <activity
             android:name=".uiAdmin.home.addCarta.AddCartaActivity"
             android:exported="false" />
         <activity

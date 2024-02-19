@@ -4,24 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.practicamagic.databinding.FragmentNotificationsBinding
-import com.example.practicamagic.uiAdmin.ajustes.AjustesAdminFragment
+import com.example.practicamagic.databinding.FragmentEventosAdminBinding
+import com.example.practicamagic.uiAdmin.ventas.VentasAdminFragment
 
-class NotificationsFragment : Fragment() {
+class EventosFragment : Fragment() {
 
-    lateinit var binding: FragmentNotificationsBinding
-    lateinit var viewModel: NotificationsViewModel
+    lateinit var binding: FragmentEventosAdminBinding
+    lateinit var viewModel: EventosViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        viewModel= ViewModelProvider(this)[NotificationsViewModel::class.java]
+        binding = FragmentEventosAdminBinding.inflate(inflater, container, false)
+        viewModel= ViewModelProvider(this)[EventosViewModel::class.java]
 
         initObservers()
 
@@ -33,6 +32,6 @@ class NotificationsFragment : Fragment() {
         }
     }
     companion object {
-        fun newInstance() = AjustesAdminFragment()
+        fun newInstance() = VentasAdminFragment()
     }
 }

@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.practicamagic.uiAdmin.home.HomeFragment"
+        android:name="com.example.practicamagic.uiAdmin.home.HomeAdminFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home_admin" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.practicamagic.uiAdmin.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_pedidos"
+        android:name="com.example.practicamagic.uiAdmin.pedidos.PedidosAdminFragment"
+        android:label="@string/title_pedidos"
+        tools:layout="@layout/fragment_pedidos_admin" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.practicamagic.uiAdmin.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_eventos"
+        android:name="com.example.practicamagic.uiAdmin.notifications.EventosFragment"
+        android:label="@string/title_eventos"
+        tools:layout="@layout/fragment_eventos_admin" />
     <fragment
-        android:id="@+id/navigation_ajustes_admin"
-        android:name="com.example.practicamagic.uiAdmin.ajustes.AjustesAdminFragment"
-        android:label="@string/ajustes_admin"
-        tools:layout="@layout/fragment_ajustes_admin" />
+        android:id="@+id/navigation_ventas"
+        android:name="com.example.practicamagic.uiAdmin.ventas.VentasAdminFragment"
+        android:label="@string/ajustes_ventas"
+        tools:layout="@layout/fragment_ventas_admin" />
 
 </navigation>

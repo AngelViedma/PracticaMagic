@@ -73,9 +73,6 @@ class CrearCuenta : AppCompatActivity() {
                     }
             }
         }
-
-
-
     }
 
     private fun validar():Boolean{

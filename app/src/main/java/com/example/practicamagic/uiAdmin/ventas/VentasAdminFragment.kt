@@ -1,4 +1,4 @@
-package com.example.practicamagic.uiAdmin.ajustes
+package com.example.practicamagic.uiAdmin.ventas
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,12 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.example.practicamagic.databinding.FragmentAjustesAdminBinding
-class AjustesAdminFragment : Fragment() {
+import com.example.practicamagic.databinding.FragmentVentasAdminBinding
+class VentasAdminFragment : Fragment() {
 
     //variables lateinit de vista y viewmodel
-    lateinit var binding: FragmentAjustesAdminBinding
+    lateinit var binding: FragmentVentasAdminBinding
     lateinit var viewModel: AjustesAdminViewModel
 
     override fun onCreateView(
@@ -19,7 +18,7 @@ class AjustesAdminFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //inicializacion de vista y viewmodel
-        binding = FragmentAjustesAdminBinding.inflate(inflater, container, false)
+        binding = FragmentVentasAdminBinding.inflate(inflater, container, false)
         viewModel =
             ViewModelProvider(this)[AjustesAdminViewModel::class.java]
 
@@ -34,7 +33,7 @@ class AjustesAdminFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = AjustesAdminFragment()
+        fun newInstance() = VentasAdminFragment()
     }
 
 }
