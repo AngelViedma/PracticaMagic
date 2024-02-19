@@ -26,7 +26,7 @@ class EventoAdapter(private val lista_eventos:List<Evento>) : RecyclerView.Adapt
         val item_actual=lista_eventos[position]
 
         holder.nombre.text=item_actual.nombre
-        holder.fecha.text=item_actual.fecha
+        holder.fecha.text=item_actual.precio
         holder.desapuntarse.visibility= View.INVISIBLE
 
         if(item_actual.id_inscripcion=="") {

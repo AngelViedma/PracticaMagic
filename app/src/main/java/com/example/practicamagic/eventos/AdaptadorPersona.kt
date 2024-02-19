@@ -28,18 +28,6 @@ class AdaptadorPersona(private val lista_personas:List<Persona>) : RecyclerView.
         holder.nombre.text=item_actual.nombre
         holder.dni.text=item_actual.dni
 
-        if(item_actual.id_inscripcion=="") {
-            holder.echar_evento.visibility = View.INVISIBLE
-            holder.ver_eventos.visibility = View.VISIBLE
-        }else{
-            holder.echar_evento.visibility = View.VISIBLE
-            holder.ver_eventos.visibility = View.INVISIBLE
-        }
-        holder.echar_evento.setOnClickListener {
-            val db_ref= FirebaseDatabase.getInstance().getReference()
-            db_ref.child("aplicacion").child("inscripciones").child(item_actual.id_inscripcion!!).removeValue()
-        }
-
         holder.ver_eventos.setOnClickListener{
             val intent= Intent(contexto,EventosPersona::class.java)
             intent.putExtra("persona",item_actual)
@@ -53,6 +41,5 @@ class AdaptadorPersona(private val lista_personas:List<Persona>) : RecyclerView.
         val nombre: TextView = itemView.findViewById(R.id.item_nombre_persona)
         val dni: TextView = itemView.findViewById(R.id.item_persona_dni)
         val ver_eventos: ImageView = itemView.findViewById(R.id.item_ver_eventos)
-        val echar_evento: ImageView =itemView.findViewById(R.id.item_echar_evento)
     }
 }
