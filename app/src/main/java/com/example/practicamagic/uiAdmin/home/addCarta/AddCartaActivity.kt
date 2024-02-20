@@ -42,7 +42,7 @@ class AddCartaActivity : AppCompatActivity() {
                 val stock = binding.textInputEditTextStockCarta.text.toString()
 
                 var id_generado: String? = db_ref.child("tienda").child("cartas").push().key
-                    val imagen = Utilidades.guardarImagen(st_ref, id_generado!!, imagenUri!!)
+                    val imagen = Utilidades.guardarImagenCarta(st_ref, id_generado!!, imagenUri!!)
 
                 val finalStock=stockFinal(stock)
 

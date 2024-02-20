@@ -7,8 +7,9 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
-import com.example.practicamagic.ClienteHome
 import com.example.practicamagic.R
+import com.example.practicamagic.entities.Evento
+import com.example.practicamagic.entities.Inscripcion
 import com.example.practicamagic.uiClientes.homeCliente.HomeClienteFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -138,7 +139,7 @@ class Apuntarse : AppCompatActivity() {
         }
     }
 
-    fun existeInscripcion(lista:MutableList<Inscripcion>,evento:String,persona:String):Boolean{
+    fun existeInscripcion(lista:MutableList<Inscripcion>, evento:String, persona:String):Boolean{
         return lista.any { it.id_persona==persona && it.id_evento==evento }
     }
 }

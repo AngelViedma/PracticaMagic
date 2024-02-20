@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_eventos"
-        android:name="com.example.practicamagic.uiAdmin.notifications.EventosFragment"
+        android:name="com.example.practicamagic.uiAdmin.eventos.EventosFragment"
         android:label="@string/title_eventos"
         tools:layout="@layout/fragment_eventos_admin" />
     <fragment

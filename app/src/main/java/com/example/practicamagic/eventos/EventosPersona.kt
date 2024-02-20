@@ -4,9 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicamagic.R
+import com.example.practicamagic.entities.Evento
+import com.example.practicamagic.entities.Inscripcion
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -43,7 +44,7 @@ class EventosPersona : AppCompatActivity() {
                         snapshot.children.forEach{ hijo: DataSnapshot?->
                             val pojo_inscripcion=hijo?.getValue(Inscripcion::class.java)
                             if(pojo_inscripcion!!.id_persona==pojo_persona.id){
-                                var pojo_evento:Evento=Evento()
+                                var pojo_evento: Evento = Evento()
                                 //USAMOS EL SEMAFORO PARA SINCRONIZAR: LINEALIZAMOS EL CODIGO
                                 var semaforo = CountDownLatch(1)
 
@@ -81,10 +82,10 @@ class EventosPersona : AppCompatActivity() {
                 }
             })
 
-        recycler=findViewById(R.id.rv_lista_eventos)
-        recycler.adapter=EventoAdapter(lista)
-        recycler.layoutManager= LinearLayoutManager(applicationContext)
-        recycler.setHasFixedSize(true)
+        //recycler=findViewById(R.id.rv_lista_eventos)
+        //recycler.adapter=EventoAdapter(lista)
+        //recycler.layoutManager= LinearLayoutManager(applicationContext)
+        //recycler.setHasFixedSize(true)
 
         volver=findViewById(R.id.volver_ver_eventos)
         volver.setOnClickListener {

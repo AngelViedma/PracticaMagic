@@ -128,12 +128,12 @@
             tools:text="10€" />
 
         <ImageButton
-            android:id="@+id/bt_modificar_evento"
+            android:id="@+id/bt_apuntarse_evento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/img_editar_carta"
+            android:src="@drawable/img_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

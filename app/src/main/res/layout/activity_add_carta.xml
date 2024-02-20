@@ -32,7 +32,7 @@
     </androidx.appcompat.widget.AppCompatButton>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutNombre_carta"
+        android:id="@+id/textInputLayoutNombreCarta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxStrokeColor="@color/color6"
@@ -43,7 +43,7 @@
         android:layout_marginTop="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditTextNombre_carta"
+            android:id="@+id/textInputEditTextNombreCarta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre de la carta"
@@ -58,7 +58,7 @@
         app:boxStrokeColor="@color/color6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutNombre_carta"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutNombreCarta"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp">
 
@@ -72,7 +72,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutPrecio_carta"
+        android:id="@+id/textInputLayoutPrecioCarta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxStrokeColor="@color/color6"
@@ -92,13 +92,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutStock_carta"
+        android:id="@+id/textInputLayoutStockCarta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxStrokeColor="@color/color6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutPrecio_carta"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutPrecioCarta"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp">
 

@@ -1,45 +1,42 @@
-package com.example.practicamagic.uiClientes.eventosCliente
+package com.example.practicamagic.uiAdmin.eventos
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.practicamagic.databinding.FragmentEventosAdminBinding
-import com.example.practicamagic.databinding.FragmentEventosClienteBinding
-import com.example.practicamagic.entities.Evento
-import com.example.practicamagic.entities.Inscripcion
 import com.example.practicamagic.eventos.CrearEvento
-import com.example.practicamagic.uiAdmin.eventos.EventoAdapter
-import com.example.practicamagic.uiAdmin.eventos.EventosFragment
-import com.example.practicamagic.uiAdmin.eventos.EventosViewModel
-import com.example.practicamagic.uiClientes.ajustesCliente.InscripcionEventoAdapter
-import com.example.practicamagic.uiClientes.pedidosCliente.PedidosClienteFragment
-import com.google.firebase.auth.FirebaseAuth
+import com.example.practicamagic.entities.Evento
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class EventosClienteFragment : Fragment() {
+class EventosFragment : Fragment() {
 
-    lateinit var binding: FragmentEventosClienteBinding
-    lateinit var viewModel: EventosClienteViewModel
-    lateinit var adapter: EventoAdapterCliente
+    lateinit var binding: FragmentEventosAdminBinding
+    lateinit var viewModel: EventosViewModel
+    lateinit var adapter: EventoAdapter
     lateinit var db_ref: DatabaseReference
     lateinit var sto_ref: StorageReference
     private var eventos: ArrayList<Evento> = arrayListOf()
-    private lateinit var auth: FirebaseAuth
+    private var launcherAddEvento= registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if(it.resultCode == -1){
+            loadEventos()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEventosClienteBinding.inflate(inflater, container, false)
-        viewModel= ViewModelProvider(this)[EventosClienteViewModel::class.java]
+        binding = FragmentEventosAdminBinding.inflate(inflater, container, false)
+        viewModel= ViewModelProvider(this)[EventosViewModel::class.java]
 
         initDatabase()
         initObservers()
@@ -65,18 +62,19 @@ class EventosClienteFragment : Fragment() {
         }
     }
     private fun initListeners() {
-
+        binding.btAddEvento.setOnClickListener {
+            launcherAddEvento.launch(Intent(requireContext(), CrearEvento::class.java))
+        }
     }
 
     private fun initDatabase() {
         db_ref= FirebaseDatabase.getInstance().reference
         sto_ref= FirebaseStorage.getInstance().reference
-        auth= FirebaseAuth.getInstance()
     }
 
     private fun initAdapter() {
-        adapter = EventoAdapterCliente(requireContext(), db_ref, auth)
-        binding.recyclerEventosCliente.adapter = adapter
+        adapter = EventoAdapter(requireContext(), db_ref, sto_ref)
+        binding.recyclerEventosAdmin.adapter = adapter
     }
 
     private fun initObservers() {

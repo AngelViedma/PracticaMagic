@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".uiClientes.eventosCliente.EventosClienteFragment">
+    tools:context=".uiClientes.ajustesCliente.InscripcionesClienteEventosFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_eventos_cliente"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_evento_cliente"
+        tools:listitem="@layout/item_evento_apuntado_cliente"
         android:layout_marginBottom="100dp"/>
 
 </FrameLayout>

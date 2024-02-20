@@ -64,10 +64,19 @@ class Utilidades {
             }
         }
 
-        suspend fun guardarImagen(sto_ref: StorageReference, id: String, imagen: Uri): String {
+        suspend fun guardarImagenCarta(sto_ref: StorageReference, id: String, imagen: Uri): String {
             lateinit var url_carta_firebase: Uri
 
             url_carta_firebase = sto_ref.child("tienda").child("cartas").child(id)
+                .putFile(imagen).await().storage.downloadUrl.await()
+
+            return url_carta_firebase.toString()
+        }
+
+        suspend fun guardarImagenEvento(sto_ref: StorageReference, id: String, imagen: Uri): String {
+            lateinit var url_carta_firebase: Uri
+
+            url_carta_firebase = sto_ref.child("tienda").child("eventos").child(id)
                 .putFile(imagen).await().storage.downloadUrl.await()
 
             return url_carta_firebase.toString()

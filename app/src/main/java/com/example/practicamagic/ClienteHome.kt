@@ -24,7 +24,7 @@ class ClienteHome : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home_cliente, R.id.navigation_eventos_cliente, R.id.navigation_pedidos_cliente, R.id.navigation_ajustes_cliente
+                R.id.navigation_home_cliente, R.id.navigation_eventos_cliente, R.id.navigation_pedidos_cliente, R.id.navigation_inscripciones_cliente
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

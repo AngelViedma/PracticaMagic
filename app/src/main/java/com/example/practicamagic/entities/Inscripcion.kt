@@ -1,4 +1,4 @@
-package com.example.practicamagic.eventos
+package com.example.practicamagic.entities
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
