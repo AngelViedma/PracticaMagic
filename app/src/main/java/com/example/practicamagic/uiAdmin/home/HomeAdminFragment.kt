@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.practicamagic.Carta
+import com.example.practicamagic.entities.Carta
 import com.example.practicamagic.databinding.FragmentHomeAdminBinding
 import com.example.practicamagic.uiAdmin.home.addCarta.AddCartaActivity
 import com.google.firebase.database.DatabaseReference
@@ -21,7 +21,7 @@ class HomeAdminFragment : Fragment() {
     //variables lateinit de vista y viewmodel
     lateinit var binding: FragmentHomeAdminBinding
     lateinit var viewModel: HomeAdminViewModel
-    lateinit var adapter: CartaAdapter
+    lateinit var adapter: CartasAdapter
     lateinit var db_ref: DatabaseReference
     lateinit var sto_ref: StorageReference
     private var cartas: ArrayList<Carta> = arrayListOf()
@@ -79,7 +79,7 @@ class HomeAdminFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = CartaAdapter(requireContext(), db_ref, sto_ref)
+        adapter = CartasAdapter(requireContext(), db_ref, sto_ref)
         binding.recyclerCartas.adapter = adapter
     }
 

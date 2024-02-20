@@ -18,12 +18,12 @@
 
     <fragment
         android:id="@+id/navigation_pedidos_cliente"
-        android:name="com.example.practicamagic.uiClientes.pedidosCliente.PedidosClienteFragment"
+        android:name="com.example.practicamagic.uiClientes.eventosCliente.EventosClienteFragment"
         android:label="@string/title_pedidos"
         tools:layout="@layout/fragment_pedidos_cliente"/>
     <fragment
         android:id="@+id/navigation_ajustes_cliente"
-        android:name="com.example.practicamagic.uiClientes.ajustesCliente.AjustedClienteFragment"
+        android:name="com.example.practicamagic.uiClientes.pedidosCliente.PedidosClienteFragment"
         android:label="@string/ajustes_ajustes"
         tools:layout="@layout/fragment_ajusted_cliente"/>
 </navigation>

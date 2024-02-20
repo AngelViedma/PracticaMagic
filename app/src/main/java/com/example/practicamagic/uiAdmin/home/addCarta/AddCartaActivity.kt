@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.practicamagic.Carta
-import com.example.practicamagic.R
+import com.example.practicamagic.entities.Carta
 import com.example.practicamagic.Utilidades
 import com.example.practicamagic.databinding.ActivityAddCartaBinding
 import com.google.firebase.database.DatabaseReference
