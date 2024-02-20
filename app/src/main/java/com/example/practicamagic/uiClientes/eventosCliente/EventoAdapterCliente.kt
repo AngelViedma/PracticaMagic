@@ -72,8 +72,8 @@ class EventoAdapterCliente(
                             val id_generado = db_ref.child("tienda").child("reservas_eventos").push().key
                             val newInscripcion = Inscripcion(id = id_generado, id_evento = evento.id, id_persona = auth.currentUser?.uid)
 
-                            db_ref.child("tienda").child("reservas_eventos").child(newPedido.id.toString())
-                                .setValue(newPedido)
+                            db_ref.child("tienda").child("reservas_eventos").child(newInscripcion.id.toString())
+                                .setValue(newInscripcion)
                                 .addOnSuccessListener {
                                     val index = eventos.indexOf(evento)
                                     if (index != -1) {

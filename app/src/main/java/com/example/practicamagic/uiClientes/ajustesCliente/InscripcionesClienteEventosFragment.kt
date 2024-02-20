@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.example.practicamagic.databinding.FragmentInscripcionesClienteBinding
 import com.example.practicamagic.entities.Evento
 import com.example.practicamagic.entities.Inscripcion
+import com.example.practicamagic.entities.Pedido
 import com.example.practicamagic.uiClientes.pedidosCliente.PedidosClienteFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -52,20 +53,20 @@ class InscripcionesClienteEventosFragment : Fragment() {
     }
 
     private fun loadEventos() {
-        db_ref.child("tienda").child("reservas_eventos").get().addOnSuccessListener { dataSnapshot ->
-            if (dataSnapshot.exists()) {
-                inscripciones.clear()
-                for (inscripcionSnapshot in dataSnapshot.children) {
-                    val inscripcion = inscripcionSnapshot.getValue(Inscripcion::class.java)
-                    if (inscripcion != null && inscripcion.id_persona == auth.currentUser?.uid) {
-                        inscripciones.add(inscripcion)
+            db_ref.child("tienda").child("reservas_eventos").get().addOnSuccessListener {
+                if (it.exists()) {
+                    inscripciones.clear()
+                    for (inscripcion in it.children) {
+                        val newPedido = inscripcion.getValue(Inscripcion::class.java)
+                        if (newPedido != null) {
+                            inscripciones.add(newPedido)
+                        }
                     }
+                    val filteredList = inscripciones.filter { it.id_persona == auth.uid  }
+                    adapter.submitList(filteredList)
                 }
-                val eventosIds = inscripciones.map { it.id_evento }
-                loadEventosDetails(eventosIds)
             }
         }
-    }
 
     private fun loadEventosDetails(eventosIds: List<String?>) {
         db_ref.child("tienda").child("eventos").get().addOnSuccessListener { dataSnapshot ->
@@ -73,15 +74,10 @@ class InscripcionesClienteEventosFragment : Fragment() {
             if (dataSnapshot.exists()) {
                 for (eventoSnapshot in dataSnapshot.children) {
                     val evento = eventoSnapshot.getValue(Evento::class.java)
-                    val eventoId = evento?.id
-                    Log.d("Inscripciones", "Evento ID: $eventoId")
-                    Log.d("Inscripciones", "Lista de IDs de eventos: $eventosIds")
-                    if (eventoId != null && eventosIds.contains(eventoId)) {
-                        inscripciones.add(Inscripcion(id_evento = eventoId, id_persona = auth.currentUser?.uid))
-                        Log.d("Inscripciones", "Evento agregado a inscripciones: $evento")
+                    if (evento != null && evento.id in eventosIds.filterNotNull()) {
+                        inscripciones.add(Inscripcion(id_evento = evento.id, id_persona = auth.currentUser?.uid))
                     }
                 }
-                Log.d("Inscripciones", "Lista de inscripciones: $inscripciones")
                 adapter.submitList(inscripciones)
             }
         }
