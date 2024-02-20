@@ -65,6 +65,9 @@ class EventosFragment : Fragment() {
         binding.btAddEvento.setOnClickListener {
             launcherAddEvento.launch(Intent(requireContext(), CrearEvento::class.java))
         }
+        binding.btVerEvento.setOnClickListener {
+            launcherAddEvento.launch(Intent(requireContext(), VerTodosEventosActivity::class.java))
+        }
     }
 
     private fun initDatabase() {

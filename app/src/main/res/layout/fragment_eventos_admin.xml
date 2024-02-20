@@ -25,4 +25,19 @@
         app:layout_constraintEnd_toEndOf="parent">
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bt_ver_evento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:src="@drawable/img_ojo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bt_add_evento"
+        app:layout_constraintVertical_bias="0.0">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 </androidx.constraintlayout.widget.ConstraintLayout>
