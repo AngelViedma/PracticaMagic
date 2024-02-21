@@ -3,6 +3,7 @@ package com.example.practicamagic.uiClientes.eventosCliente
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,7 +15,10 @@ import com.example.practicamagic.entities.Evento
 import com.example.practicamagic.entities.Inscripcion
 import com.example.practicamagic.entities.Pedido
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.StorageReference
 
 class EventoAdapterCliente(
@@ -39,8 +43,44 @@ class EventoAdapterCliente(
             binding.tvAforoOcupadoEvento.text = evento.aforo_ocupado.toString()
 
             binding.btApuntarseEvento.setOnClickListener {
-                showConfirmationDialog(evento)
+                val userId = auth.currentUser?.uid
+                val eventId = evento.id // Supongamos que evento es el objeto Evento actual
+
+                if (userId != null) {
+                    db_ref.child("tienda").child("reservas_eventos")
+                        .orderByChild("id_evento")
+                        .equalTo(eventId)
+                        .addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                var userAlreadyRegistered = false
+                                for (reservaSnapshot in snapshot.children) {
+                                    val idUsuario = reservaSnapshot.child("id_persona").getValue(String::class.java)
+                                    if (idUsuario == userId) {
+                                        userAlreadyRegistered = true
+                                        break
+                                    }
+                                }
+
+                                if (userAlreadyRegistered) {
+                                    Toast.makeText(contexto, "Ya estás registrado en este evento", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    // El usuario no está registrado en este evento, muestra el diálogo de confirmación
+                                    binding.btApuntarseEvento.setOnClickListener {
+                                        showConfirmationDialog(evento)
+                                    }
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                // Manejar el error en la consulta
+                            }
+                        })
+                }
             }
+
+
+
+
         }
     }
 
