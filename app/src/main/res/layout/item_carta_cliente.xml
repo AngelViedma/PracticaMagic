@@ -73,7 +73,16 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_pre"
             app:layout_constraintStart_toEndOf="@+id/tv_pre"
             app:layout_constraintTop_toTopOf="@+id/tv_pre"
-            tools:text="20€" />
+            tools:text="20" />
+        <TextView
+            android:id="@+id/tv_euros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_precio_carta"
+            app:layout_constraintStart_toEndOf="@+id/tv_precio_carta"
+            app:layout_constraintTop_toTopOf="@+id/tv_precio_carta"
+            tools:text="€"
+            android:text="€"/>
 
         <TextView
             android:id="@+id/tv_stock_carta"
