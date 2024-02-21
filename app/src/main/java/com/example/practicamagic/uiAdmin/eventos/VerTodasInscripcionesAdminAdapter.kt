@@ -1,4 +1,4 @@
-package com.example.practicamagic.uiClientes.ajustesCliente
+package com.example.practicamagic.uiAdmin.eventos
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.storage.StorageReference
 
-class InscripcionEventoAdapter(
+class VerTodasInscripcionesAdminAdapter(
     private val context: Context,
     private val db_ref: DatabaseReference,
     private val sto_ref: StorageReference,
     auth: FirebaseAuth
-) : RecyclerView.Adapter<InscripcionEventoAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<VerTodasInscripcionesAdminAdapter.ViewHolder>() {
 
     private var inscripcion: MutableList<Inscripcion> = mutableListOf()
 

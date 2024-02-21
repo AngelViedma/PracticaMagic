@@ -18,6 +18,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btChangeTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_login_corner_round"
+        android:text="TEMA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -91,6 +100,8 @@
             </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
 

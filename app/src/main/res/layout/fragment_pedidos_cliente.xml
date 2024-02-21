@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="100dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_pedido_admin" />
+        tools:listitem="@layout/item_compra_cliente" />
 
 </FrameLayout>

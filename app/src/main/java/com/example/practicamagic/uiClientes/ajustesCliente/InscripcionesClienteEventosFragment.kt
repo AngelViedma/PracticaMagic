@@ -68,25 +68,6 @@ class InscripcionesClienteEventosFragment : Fragment() {
             }
         }
 
-    private fun loadEventosDetails(eventosIds: List<String?>) {
-        db_ref.child("tienda").child("eventos").get().addOnSuccessListener { dataSnapshot ->
-            val inscripciones: MutableList<Inscripcion> = mutableListOf()
-            if (dataSnapshot.exists()) {
-                for (eventoSnapshot in dataSnapshot.children) {
-                    val evento = eventoSnapshot.getValue(Evento::class.java)
-                    if (evento != null && evento.id in eventosIds.filterNotNull()) {
-                        inscripciones.add(Inscripcion(id_evento = evento.id, id_persona = auth.currentUser?.uid))
-                    }
-                }
-                adapter.submitList(inscripciones)
-            }
-        }
-    }
-
-
-
-
-
 
     private fun initDatabase() {
         db_ref = FirebaseDatabase.getInstance().reference

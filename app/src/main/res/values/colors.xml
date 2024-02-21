@@ -10,4 +10,6 @@
     <color name="color3">#E6D2E7</color>
     <color name="color4">#84FFD8</color>
     <color name="color6">#FFFFFF</color>
+    <color name="button_background_color_light">#FF4081</color>
+    <color name="button_background_color_dark">#2196F3</color>
 </resources>

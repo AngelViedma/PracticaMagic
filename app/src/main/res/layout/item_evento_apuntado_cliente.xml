@@ -41,7 +41,8 @@
             android:text="ID Evento: "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_id_inscripcion"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            tools:text="ID Evento:"/>
 
         <TextView
             android:id="@+id/tv_numero_id_evento"

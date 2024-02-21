@@ -1,14 +1,17 @@
 package com.example.practicamagic
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import com.example.practicamagic.clientes.Usuario
 import com.google.android.material.textfield.TextInputEditText
@@ -18,12 +21,15 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import android.content.res.Configuration
+import androidx.core.content.ContextCompat
 
 class Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var bt_login: Button
     private lateinit var textInputLayoutContrasena: TextInputLayout
     private lateinit var textInputEditTextContrasena: TextInputEditText
+    private lateinit var btnCambiarTheme: Button
 
     private lateinit var textInputEditTextCorreo: TextInputEditText
     private lateinit var textInputLayoutCorreo: TextInputLayout
@@ -34,10 +40,29 @@ class Login : AppCompatActivity() {
     private lateinit var db_ref: DatabaseReference
     private lateinit var this_activity: AppCompatActivity
 
+    companion object {
+        private const val PREFS_NAME = "ThemePrefs"
+        private const val PREF_THEME = "Theme"
+    }
+    private lateinit var sharedPrefs: SharedPreferences
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        btnCambiarTheme = findViewById(R.id.btChangeTheme)
+
+        sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        val savedTheme = sharedPrefs.getInt(PREF_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(savedTheme)
+
+        btnCambiarTheme.setOnClickListener {
+            // Cambiar el tema
+            toggleTheme()
+        }
 
 
         this_activity = this
@@ -52,6 +77,7 @@ class Login : AppCompatActivity() {
             putString("admin12345@gmail.com","admin12345")
             apply()
         }
+
 
         bt_login=findViewById(R.id.bt_login)
 
@@ -161,5 +187,27 @@ class Login : AppCompatActivity() {
                     "Usuario creado con exito en la base de datos"
                 )
         }
+    }
+    private fun toggleTheme() {
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        val newTheme = when (currentNightMode) {
+            Configuration.UI_MODE_NIGHT_YES ->{
+                AppCompatDelegate.MODE_NIGHT_NO
+                R.color.button_background_color_dark
+            }
+            Configuration.UI_MODE_NIGHT_NO ->{
+                AppCompatDelegate.MODE_NIGHT_YES
+                R.color.button_background_color_light
+            }
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        }
+        btnCambiarTheme.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, newTheme))
+        // Guardar el nuevo tema en las SharedPreferences
+        sharedPrefs.edit().putInt(PREF_THEME, newTheme).apply()
+
+        // Aplicar el nuevo tema
+        AppCompatDelegate.setDefaultNightMode(newTheme)
+        recreate()
+
     }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicamagic.databinding.DialogAprobarPedidoBinding
+import com.example.practicamagic.databinding.ItemCompraClienteBinding
 import com.example.practicamagic.databinding.ItemPedidoAdminBinding
 import com.example.practicamagic.entities.Pedido
 import com.google.firebase.auth.FirebaseAuth
@@ -22,18 +23,18 @@ class ComprasAdapter(
 
     private var pedidos: MutableList<Pedido> = mutableListOf()
 
-    class ViewHolder(val binding: ItemPedidoAdminBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: ItemCompraClienteBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(pedido: Pedido, context: Context) {
             binding.tvNumeroIdPedido.text = pedido.id
             binding.tvNumeroIdCarta.text = pedido.cartaId
             binding.tvNumeroIdCliente.text = pedido.usuarioId
-            binding.btAprobarPedido.isVisible = false
+            binding.tvPreparadoCliente.text = pedido.estado
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
-                val binding = ItemPedidoAdminBinding.inflate(
+                val binding = ItemCompraClienteBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
