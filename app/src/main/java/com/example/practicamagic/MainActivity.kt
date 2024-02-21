@@ -10,6 +10,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var bt_crear_cuenta:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val serviceIntent = Intent(this, PedidoService::class.java)
+        startService(serviceIntent)
+
         setContentView(R.layout.activity_main)
         bt_login_main=findViewById(R.id.bt_registrar_datos_usuario)
         bt_crear_cuenta=findViewById(R.id.bt_crear_cuenta)

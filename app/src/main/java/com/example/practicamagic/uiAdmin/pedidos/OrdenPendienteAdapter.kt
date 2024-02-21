@@ -25,7 +25,7 @@ class OrdenPendienteAdapter(
         fun bind(pedido: Pedido, context: Context) {
             binding.tvNumeroIdPedido.text = pedido.id
             binding.tvNumeroIdCarta.text = pedido.cartaId
-            binding.tvIdCliente.text = pedido.usuarioId
+            binding.tvNumeroIdCliente.text = pedido.usuarioId
 
             if (pedido.estado == "Preparado") {
                 binding.container.setBackgroundColor(Color.LTGRAY)

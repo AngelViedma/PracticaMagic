@@ -3,15 +3,18 @@ package com.example.practicamagic
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import android.util.Log
+import com.google.firebase.database.*
+import com.google.firebase.messaging.FirebaseMessaging
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.practicamagic.entities.Pedido
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import org.json.JSONException
+import org.json.JSONObject
 
-class PedidosService : Service() {
+class PedidoService : Service() {
 
     private lateinit var databaseReference: DatabaseReference
     private lateinit var childEventListener: ChildEventListener
@@ -25,18 +28,60 @@ class PedidosService : Service() {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val pedido = snapshot.getValue(Pedido::class.java)
                 pedido?.let {
-                    // Enviar notificación al administrador
-                    enviarNotificacionAdmins(pedido)
+                    // Verificar si el pedido fue realizado por un cliente
+                    if (pedido.usuarioId != null) {
+                        // Enviar notificación al cliente cuando se obtiene el token de FCM
+                        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val token = task.result
+                                token?.let {
+                                    val notificationTitle = "¡Tu pedido ha sido aprobado!"
+                                    val notificationBody = "Tu pedido con ID ${pedido.id} ha sido preparado y está listo para su recolección."
+                                    enviarNotificacionFCM(token, notificationTitle, notificationBody)
+                                }
+                            } else {
+                                // Manejar el error al obtener el token
+                                Log.e("PedidoService", "Error al obtener el token FCM: ${task.exception}")
+                            }
+                        }
+                    }
+                    // Verificar si el pedido está en estado "Preparado"
+                    if (pedido.estado == "Preparado") {
+                        // Enviar notificación a los administradores
+                        enviarNotificacionAdmins(pedido)
+                    }
                 }
             }
 
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {}
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                val pedido = snapshot.getValue(Pedido::class.java)
+                pedido?.let {
+                    // Verificar si el estado del pedido cambió a "Preparado"
+                    if (pedido.estado == "Preparado") {
+                        // Enviar notificación al cliente cuando se obtiene el token de FCM
+                        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val token = task.result
+                                token?.let {
+                                    val notificationTitle = "¡Tu pedido ha sido aprobado!"
+                                    val notificationBody = "Tu pedido con ID ${pedido.id} ha sido preparado y está listo para su recolección."
+                                    enviarNotificacionFCM(token, notificationTitle, notificationBody)
+                                }
+                            } else {
+                                // Manejar el error al obtener el token
+                                Log.e("PedidoService", "Error al obtener el token FCM: ${task.exception}")
+                            }
+                        }
+                    }
+                }
+            }
+
             override fun onChildRemoved(snapshot: DataSnapshot) {}
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {}
             override fun onCancelled(error: DatabaseError) {}
         }
 
-        // Escuchar eventos de agregado de hijos en la base de datos de pedidos
+        // Escuchar eventos de cambios y agregado de hijos en la base de datos de pedidos
         databaseReference.addChildEventListener(childEventListener)
     }
 
@@ -54,14 +99,53 @@ class PedidosService : Service() {
         obtenerAdmins { admins ->
             admins.forEach { admin ->
                 // Envía la notificación a cada administrador
-                enviarNotificacion(admin, "Nuevo pedido realizado", "Un cliente ha realizado un nuevo pedido.")
+                enviarNotificacion(admin, "Nuevo pedido preparado", "Se ha preparado un nuevo pedido.")
             }
+        }
+    }
+
+    private fun enviarNotificacionFCM(token: String, title: String, body: String) {
+        val notification = JSONObject()
+        val notificationBody = JSONObject()
+
+        try {
+            notificationBody.put("title", title)
+            notificationBody.put("body", body)
+
+            notification.put("to", token)
+            notification.put("data", notificationBody)
+
+            val request = object : JsonObjectRequest(
+                Request.Method.POST,
+                "https://fcm.googleapis.com/fcm/send",
+                notification,
+                Response.Listener {
+                    // Notificación enviada exitosamente
+                    Log.d("PedidoService", "Notificación enviada exitosamente")
+                },
+                Response.ErrorListener {
+                    // Error al enviar la notificación
+                    Log.e("PedidoService", "Error al enviar la notificación: $it")
+                }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["Content-Type"] = "application/json"
+                    headers["Authorization"] = "key=BkwkR1MdJL379kMFFVyEyvRjPvBOZ8dem0tODKzj" // Reemplaza con tu clave del servidor FCM
+                    return headers
+                }
+            }
+
+            // Agregar la solicitud a la cola de solicitudes
+            Volley.newRequestQueue(this).add(request)
+        } catch (e: JSONException) {
+            e.printStackTrace()
         }
     }
 
     private fun enviarNotificacion(adminId: String, title: String, body: String) {
         // Aquí envía la notificación a través de FCM utilizando el ID del administrador
-        // Puedes personalizar esto de acuerdo a tu implementación específica de FCM
+        // Puedes implementar una lógica similar a la función enviarNotificacionFCM()
+        // para enviar notificaciones a los administradores.
     }
 
     private fun obtenerAdmins(onAdminsObtained: (List<String>) -> Unit) {
